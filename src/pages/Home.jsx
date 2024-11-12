@@ -11,7 +11,13 @@ const Home = () => {
     const [jump, setJump] = useState([]);
     const [uniquely, setUniquely] = useState([]);
     const [more, setMore] = useState(false);
-    const [see, setSee] = useState(4);
+    const [see1, setSee1] = useState(4);
+    const [see2, setSee2] = useState(4);
+    const [see3, setSee3] = useState(4);
+    const [see4, setSee4] = useState(4);
+    const [see5, setSee5] = useState(4);
+    const [see6, setSee6] = useState(4);
+    const [see7, setSee7] = useState(4);
 
     useEffect(() => {
         lord.get('featured-playlists')
@@ -49,7 +55,7 @@ const Home = () => {
             .catch(err => console.log('Xatolik:', err));
     }, []);
 
-    const handlePlaylistClick = (id) =>  {
+    const handlePlaylistClick = (id) => {
         navigate(`/details/${id}`);
     };
 
@@ -70,33 +76,24 @@ const Home = () => {
             </div>
 
             <div className='bg-black text-white px-10 pb-20'>
-                {[{ title: "Your top mixes", data: categories },
-                { title: "Made for you", data: mode },
-                { title: "Recently played", data: recently },
-                { title: "Jump back in", data: jump },
-                { title: "Uniquely yours", data: uniquely }]
-                .map((section, sectionIndex) => (
-                    <div className='mb-12' key={sectionIndex}>
-                        <div className='flex justify-between items-center'>
-                            <h1 className='text-3xl mb-7 font-semibold'>{section.title}</h1>
-                            <button onClick={() => setSee(10)} className='uppercase font-semibold text-[#ADADAD]'>see all</button>
-                        </div>
-                        <div className='flex flex-wrap gap-4'>
-                            {section.data.slice(0, see).map((item, index) => (
-                                <div key={index} onClick={() => handlePlaylistClick(item.id)} className='bg-white/10 mb-2 w-[214px] flex flex-col gap-2 rounded-md items-center py-5'>
-                                    {item.images?.map((img, i) => (
-                                        <img key={i} width={182} src={img.url} alt="" />
-                                    ))}
-                                    <h4 className='text-xl capitalize font-semibold'>{item.name}</h4>
-                                    <p className={`${!more ? 'line-clamp-1' : 'line-clamp-4'} text-[#B3B3B3]`}>{item.description}</p>
-                                    <button onClick={() => setMore(!more)} className='text-[#B3B3B3] text-xl my-2'>
-                                        {more ? 'Show less' : 'Learn more'}
-                                    </button>
-                                </div>
-                            ))}
-                        </div>
+                <div>
+                    <div className='flex justify-between items-center'>
+                        <h1 className='text-3xl mb-7 font-semibold'>Your top mixes</h1>
+                        <button onClick={() => setSee1(10)} className='uppercase font-semibold text-[#ADADAD]'>
+                            See All
+                        </button>
                     </div>
-                ))}
+                    {
+
+                        categories.length && categories.slice(0, see1).map((value, index) => {
+                            console.log(value);
+                            
+                            <div className='w-[224px]' key={index}>
+                                {/* <img src={} alt="" /> */}
+                            </div>
+                        })
+                    }
+                </div>
             </div>
         </div>
     )

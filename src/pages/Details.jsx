@@ -2,16 +2,25 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import ReactPlayer from "react-player";
 import lord from "../../axios";
+import img3 from "../assets/Back.png"
+import img4 from "../assets/Forward.png"
+import img5 from "../assets/Play.png"
+import img6 from "../assets/Search_S.svg"
+import img7 from "../assets/Vector.svg"
+import img8 from "../assets/Heart.svg"
+import img9 from "../assets/clock.png"
+import img10 from "../assets/options.png"
 
 function Details() {
     const { id: playlistId } = useParams();
     const [details, setDetails] = useState(null);
     const [isPlaying, setIsPlaying] = useState(false);
+    const [load, setLoad] = useState(true);
     const [currentSong, setCurrentSong] = useState(null);
 
     useEffect(() => {
         if (playlistId) {
-            lord.get(`https://api.spotify.com/v1/playlists/${playlistId}`)
+            lord(`https://api.spotify.com/v1/playlists/${playlistId}`)
                 .then((response) => setDetails(response.data))
                 .catch((error) => console.error(error));
         }
@@ -35,11 +44,11 @@ function Details() {
     if (!details) return <div className="text-white">Loading...</div>;
 
     return (
-        <div className="max-w-4xl mx-auto bg-stone-900">
+        <div className="bg-stone-900">
             <div className="p-8 bg-gradient-to-b from-[#DDF628] to-black">
                 <div className="flex gap-[22px] mt-10">
-                    <img src="/Back.svg" alt="Go back" className="cursor-pointer" />
-                    <img src="/Forward.svg" alt="Go forward" className="cursor-pointer" />
+                    <img src={img3} alt="Go back" className="cursor-pointer" />
+                    <img src={img4} alt="Go forward" className="cursor-pointer" />
                 </div>
                 <div className="flex gap-8 mt-[57px]">
                     <img
@@ -57,18 +66,17 @@ function Details() {
                     </div>
                 </div>
                 <div className="flex items-center gap-[400px] cursor-pointer">
-                    <div className="flex gap-3">
+                    <div className="flex gap-5 w-80">
                         <img
-                            src="/play.svg"
+                            src={img5}
                             alt="play"
                             onClick={() => setIsPlaying(!isPlaying)}
                         />
-                        <img src="/heart.svg" alt="heart" />
-                        <img src="/download.svg" alt="download" />
-                        <img src="/option.svg" alt="option" />
+                        <img src={img8} alt="heart" />
+                        <img src={img10} width={44} height={44} alt="option" />
                     </div>
                     <div className="flex items-center gap-8">
-                        <img src="/search.svg" alt="search" />
+                        <img src={img6} alt="search" />
                         <select name="" id="">
                             <option value="">Custom order</option>
                         </select>
@@ -79,7 +87,7 @@ function Details() {
                     <h5 className="mr-[291px]">TITLE</h5>
                     <h5 className="mr-[220px]">ALBUM</h5>
                     <h5 className="mr-[120px]">DATE ADDED</h5>
-                    <img src="/time.svg" alt="time" />
+                    <img src={img9} alt="time" />
                 </div>
             </div>
             <ul className="space-y-4 px-10">
@@ -106,7 +114,8 @@ function Details() {
                                 {track.track.artists.map((artist) => artist.name).join(", ")}
                             </p>
                         </div>
-                        <p className="text-gray-400 mr-24">{track.track.album.name}</p>
+                        <p className="text-gray-400 mr-4">{track.track.album.name}</p>
+                        <img className="w-6 mr-6" src={img7} alt="" />
                         <div className="flex items-center">
                             <span>{MusicDuration(track.track.duration_ms)}</span>
                         </div>

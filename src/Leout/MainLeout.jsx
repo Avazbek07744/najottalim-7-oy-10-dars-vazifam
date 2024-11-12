@@ -5,13 +5,13 @@ import Right from './Right'
 const MainLeout = ({ children }) => {
     return (
         <div>
-            <div className='w-[16vw] bg-[#000000] text-[#ABABAB] fixed top-0 left-0 h-[100vh]'>
+            <div className='w-[20vw] bg-[#000000] text-[#ABABAB] fixed top-0 left-0 h-[100vh]'>
                 <Left />
             </div>
-            <div className='w-[68vw] mx-auto'>
+            <div className='w-[60vw] mx-auto'>
                 {children}
             </div>
-            <div className='w-[16vw] bg-[#000000] text-[#ABABAB] fixed top-0 right-0 h-[100vh]'>
+            <div className='bg-[#000000] text-[#ABABAB] fixed top-0 right-0 h-[100vh]'>
                 <Right />
             </div>
         </div>

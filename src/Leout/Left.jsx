@@ -1,7 +1,12 @@
 import React from 'react'
 import img from '../assets/like.svg';
+import { useNavigate } from 'react-router-dom';
 
 const Left = () => {
+    const navigate = useNavigate()
+    function navigateLike() {
+        navigate('/like')
+    }
     return (
         <div className='px-6 py-[20px]'>
             <div className='flex flex-col gap-5'>
@@ -16,7 +21,7 @@ const Left = () => {
                 </div>
                 <div className='flex gap-5 items-center mb-3 text-white'>
                     <img src={img} width={32} alt="" />
-                    <p>Liked Songs</p>
+                    <button className='' onClick={navigateLike}>Liked Songs</button>
                 </div>
                 <div>
                     <ul className='flex flex-col gap-[10px]'>
